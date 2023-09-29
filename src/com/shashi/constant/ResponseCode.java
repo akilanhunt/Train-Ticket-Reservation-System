@@ -10,6 +10,7 @@ public enum ResponseCode {
     NO_CONTENT(204, "No Items Found"),
     PAGE_NOT_FOUND(404, "The Page You are Searching For is Not available"),
     ACCESS_DENIED(403, "Please Login First to continue"),
+    CSRF_FAILED(403, "CSRF check has failed, please try again"),
     BAD_REQUEST(400, "Bad Request, Please Try Again"),
     UNAUTHORIZED(401,"Invalid Credentials, Try Again"),
     SESSION_EXPIRED(401, "Session Expired, Login Again to Continue"),

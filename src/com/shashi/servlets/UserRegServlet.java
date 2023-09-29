@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.beans.TrainException;
 import com.shashi.beans.UserBean;
 import com.shashi.constant.UserRole;
@@ -43,7 +45,7 @@ public class UserRegServlet extends HttpServlet {
 			} else {
 				RequestDispatcher rd = req.getRequestDispatcher("UserRegister.html");
 				rd.include(req, res);
-				pw.println("<div class='tab'><p1 class='menu'>" + message + "</p1></div>");
+				pw.println("<div class='tab'><p1 class='menu'>" + ESAPI.encoder().encodeForHTML(message) + "</p1></div>");
 
 			}
 

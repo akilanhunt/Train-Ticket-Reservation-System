@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.beans.TrainBean;
 import com.shashi.beans.TrainException;
 import com.shashi.service.TrainService;
@@ -39,13 +41,14 @@ public class AdminTrainUpdate extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher("AdminHome.html");
 				rd.include(req, res);
 				pw.println("<div class='tab'>Train Schedule Update</div>");
-				pw.println("<div class='tab'>" + "<table><form action='updatetrainschedule' method='post'>"
+				pw.println("<div class='tab'>" + "<table><form action='updatetrainschedule' method='post' onsubmit=\"setCsrfParam('csrf')\">"
+						+"<input type=\"hidden\" id=\"csrf\">"
 						+ "<tr><td>Train No :</td><td><input type='text' name='trainno' value='" + train.getTr_no()
 						+ "'></td></tr>" + "<tr><td>Train Name :</td><td><input type='text' name='trainname' value='"
-						+ train.getTr_name() + "'></td></tr>"
+						+ ESAPI.encoder().encodeForHTML(train.getTr_name()) + "'></td></tr>"
 						+ "<tr><td>From Station :</td><td><input type='text' name='fromstation' value='"
-						+ train.getFrom_stn() + "'></td></tr>"
-						+ "<tr><td>To Station :</td><td><input type='text' name='tostation' value='" + train.getTo_stn()
+						+ ESAPI.encoder().encodeForHTML(train.getFrom_stn()) + "'></td></tr>"
+						+ "<tr><td>To Station :</td><td><input type='text' name='tostation' value='" + ESAPI.encoder().encodeForHTML(train.getTo_stn())
 						+ "'></td></tr>"
 						+ "<tr><td>Available seats:</td><td><input type='text' name='available' value='"
 						+ train.getSeats() + "'></td></tr>"

@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>LOGIN</title>
 <link rel="stylesheet" href="UserHome_Css.css">
+<script src="CsrfCookieFunctions.js" ></script>
 </head>
 <body>
 	<header>
@@ -27,15 +28,16 @@
 
 		<tr>
 			<td>
-				<form action="userreg" method="post">
+				<form action="userreg" method="post" onsubmit="setCsrfParam('csrf')">
+					<input type="hidden" id="csrf">
 					Email Id : <input type="email" name="mailid"
 						placeholder="Enter your emailId" required><br /> <br />
 					Password : <input type="password" name="pword" required><br />
 					<br /> FirstName: <input type="text" name="firstname" required><br />
 					<br /> Last Name: <input type="text" name="lastname" required><br />
 					<br /> Address : <input type="text" name="address" required><br />
-					<br /> Phone No : <input type="number" name="phoneno" required><br />
-					<br /> Photo : <input type="file" name="userphoto"><br />
+					<br /> Phone No : <input type="text" name="phoneno" required><br />
+					<!--<br /> Photo : <input type="file" name="userphoto"><br />-->
 					<br /> <input type="submit"
 						value=" I AGREE FOR ALL TERMS & CONDITIONS ! REGISTER ME "
 						style="text-align: center">

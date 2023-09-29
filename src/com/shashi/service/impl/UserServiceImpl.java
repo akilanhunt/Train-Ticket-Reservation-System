@@ -138,8 +138,8 @@ public class UserServiceImpl implements UserService {
 			ps.setString(4, customer.getLName());
 			ps.setString(5, customer.getAddr());
 			ps.setLong(6, customer.getPhNo());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			int rs = ps.executeUpdate();
+			if (rs>0) {
 				responseCode = ResponseCode.SUCCESS.toString();
 			}
 			ps.close();

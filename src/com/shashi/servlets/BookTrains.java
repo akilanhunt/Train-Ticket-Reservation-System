@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -12,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.owasp.esapi.ESAPI;
 
 import com.shashi.beans.HistoryBean;
 import com.shashi.beans.TrainBean;
@@ -49,13 +53,11 @@ public class BookTrains extends HttpServlet {
 
 			String userMailId = TrainUtil.getCurrentUserEmail(req);
 
-			SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-			SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy");
-			java.util.Date utilDate;
-			String date = LocalDate.now().toString();
-			utilDate = inputFormat.parse(journeyDate);
-			date = outputFormat.format(utilDate);
-
+			SimpleDateFormat sqlDateFormat = new SimpleDateFormat("YYYY-MM-DD");
+			Date journeyDate2 = sqlDateFormat.parse(journeyDate);
+//			Date date = format.parse(LocalDate.now().toString());
+			
+			
 			TrainBean train = trainService.getTrainById(trainNo);
 
 			if (train != null) {
@@ -78,21 +80,21 @@ public class BookTrains extends HttpServlet {
 						bookingDetails.setTr_no(trainNo);
 						bookingDetails.setSeats(seat);
 						bookingDetails.setMailId(userMailId);
-						bookingDetails.setDate(date);
+						bookingDetails.setDate(sqlDateFormat.format(journeyDate2));
 
 						HistoryBean transaction = bookingService.createHistory(bookingDetails);
 						pw.println("<div class='tab'><p class='menu green'>" + seat
 								+ " Seats Booked Successfully!<br/><br/> Your Transaction Id is: "
 								+ transaction.getTransId() + "</p>" + "</div>");
 						pw.println("<div class='tab'>" + "<p class='menu'>" + "<table>"
-								+ "<tr><td>PNR No: </td><td colspan='3' style='color:blue;'>" + transaction.getTransId()
-								+ "</td></tr><tr><td>Train Name: </td><td>" + train.getTr_name()
+								+ "<tr><td>PNR No: </td><td colspan='3' style='color:blue;'>" + ESAPI.encoder().encodeForHTML(transaction.getTransId())
+								+ "</td></tr><tr><td>Train Name: </td><td>" + ESAPI.encoder().encodeForHTML(train.getTr_name())
 								+ "</td><td>Train No: </td><td>" + transaction.getTr_no()
-								+ "</td></tr><tr><td>Booked From: </td><td>" + transaction.getFrom_stn()
-								+ "</td><td>To Station: </td><td>" + transaction.getTo_stn() + "</td></tr>"
-								+ "<tr><td>Date Of Journey:</td><td>" + transaction.getDate()
+								+ "</td></tr><tr><td>Booked From: </td><td>" + ESAPI.encoder().encodeForHTML(transaction.getFrom_stn())
+								+ "</td><td>To Station: </td><td>" + ESAPI.encoder().encodeForHTML(transaction.getTo_stn()) + "</td></tr>"
+								+ "<tr><td>Date Of Journey:</td><td>" + ESAPI.encoder().encodeForHTML(transaction.getDate())
 								+ "</td><td>Time(HH:MM):</td><td>11:23</td></tr><tr><td>Passangers: </td><td>"
-								+ transaction.getSeats() + "</td><td>Class: </td><td>" + seatClass + "</td></tr>"
+								+ transaction.getSeats() + "</td><td>Class: </td><td>" + ESAPI.encoder().encodeForHTML(seatClass) + "</td></tr>"
 								+ "<tr><td>Booking Status: </td><td style='color:green;'>CNF/S10/35</td><td>Amount Paid:</td><td>&#8377; "
 								+ transaction.getAmount() + "</td></tr>" + "</table>" + "</p></div>");
 

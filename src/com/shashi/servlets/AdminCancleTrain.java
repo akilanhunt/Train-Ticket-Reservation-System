@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.beans.TrainException;
 import com.shashi.constant.ResponseCode;
 import com.shashi.constant.UserRole;
@@ -43,12 +45,12 @@ public class AdminCancleTrain extends HttpServlet {
 			if (ResponseCode.SUCCESS.toString().equalsIgnoreCase(message)) {
 				RequestDispatcher rd = req.getRequestDispatcher("CancleTrain.html");
 				rd.include(req, res);
-				pw.println("<div class='main'><p1 class='menu'>Train number " + trainNo
+				pw.println("<div class='main'><p1 class='menu'>Train number " + ESAPI.encoder().encodeForHTML(trainNo)
 						+ " has been Deleted Successfully.</p1></div>");
 			} else {
 				RequestDispatcher rd = req.getRequestDispatcher("CancleTrain.html");
 				rd.include(req, res);
-				pw.println("<div class='tab'><p1 class='menu'>Train No." + trainNo + " is Not Available !</p1></div>");
+				pw.println("<div class='tab'><p1 class='menu'>Train No." + ESAPI.encoder().encodeForHTML(trainNo) + " is Not Available !</p1></div>");
 			}
 		} catch (Exception e) {
 			throw new TrainException(422, this.getClass().getName() + "_FAILED", e.getMessage());

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.shashi.beans.TrainException;
 import com.shashi.constant.ResponseCode;
 
+//@WebServlet("/error")
 public class ErrorHandlerServlet extends HttpServlet {
 
 	/**

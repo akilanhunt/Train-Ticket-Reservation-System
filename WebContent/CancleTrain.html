@@ -5,6 +5,7 @@
 <title>E-Trains</title>
 <link rel="stylesheet" href="UserHome_Css.css">
 </head>
+<script src="CsrfCookieFunctions.js" ></script>
 <body>
 	<header>
 		<h1 class="hd">National Ticket Booking Spot</h1>
@@ -54,8 +55,9 @@
 	<div class='main'>
 		<p class='menu'>Train Cancellation</p>
 	</div>
-	<form class="tab" action="admincancletrain" method="post">
+	<form class="tab" action="admincancletrain" method="post" onsubmit="setCsrfParam('csrf')">
 		Train Number:<input type="text" name="trainno"><br />
+		<input type="hidden" id="csrf">
 		<br /> <input type="submit" value=" CANCLE TRAIN ">
 	</form>
 	<br />

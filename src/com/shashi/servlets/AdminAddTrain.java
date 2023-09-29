@@ -39,6 +39,7 @@ public class AdminAddTrain extends HttpServlet {
 		res.setContentType("text/html");
 		PrintWriter pw = res.getWriter();
 		TrainUtil.validateUserAuthorization(req, UserRole.ADMIN);
+		TrainUtil.validateCSRF(req);
 		try {
 			TrainBean train = new TrainBean();
 			train.setTr_no(Long.parseLong(req.getParameter("trainno")));

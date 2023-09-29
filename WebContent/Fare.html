@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="UserHome_Css.css">
 <style>
 </style>
+<script src="CsrfCookieFunctions.js" ></script>
 </head>
 <body>
 	<header>
@@ -61,7 +62,7 @@
 	<div class="tab">
 		<p class="menu">Fare Enquiry for Trains Between Stations</p>
 	</div>
-	<form action="fareenq" class="tab red" method="post">
+	<form action="fareenq" class="tab red" method="get">
 		From Station: <input type="text" name="fromstation"><br />
 		<br /> To Station: <input type="text" name="tostation"><br />
 		<br /> <input type="submit" value=" Get Fare "><br />

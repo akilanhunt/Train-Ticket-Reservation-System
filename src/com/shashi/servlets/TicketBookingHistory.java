@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.beans.HistoryBean;
 import com.shashi.beans.TrainException;
 import com.shashi.constant.UserRole;
@@ -40,9 +42,9 @@ public class TicketBookingHistory extends HttpServlet {
 
 				for (HistoryBean trans : details) {
 
-					pw.println("" + "<tr> " + "" + "<td>" + trans.getTransId() + "</td>" + "<td>" + trans.getTr_no()
-							+ "</td>" + "<td>" + trans.getFrom_stn() + "</td>" + "<td>" + trans.getTo_stn() + "</td>"
-							+ "<td>" + trans.getDate() + "</td>" + "<td>" + trans.getSeats() + "</td><td>"
+					pw.println("" + "<tr> " + "" + "<td>" + ESAPI.encoder().encodeForHTML(trans.getTransId()) + "</td>" + "<td>" + trans.getTr_no()
+							+ "</td>" + "<td>" +ESAPI.encoder().encodeForHTML( trans.getFrom_stn()) + "</td>" + "<td>" + ESAPI.encoder().encodeForHTML(trans.getTo_stn()) + "</td>"
+							+ "<td>" + ESAPI.encoder().encodeForHTML(trans.getDate()) + "</td>" + "<td>" + trans.getSeats() + "</td><td>"
 							+ trans.getAmount() + "</td>" + "</tr>");
 				}
 				pw.println("</table></div>");

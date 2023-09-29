@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>E-Trains</title>
 <link rel="stylesheet" href="UserHome_Css.css">
+<script src="CsrfCookieFunctions.js" ></script>
 </head>
 <body>
 	<header>
@@ -54,7 +55,7 @@
 	<div class="main">
 		<p class="menu">Update Trains</p>
 	</div>
-	<form action="adminupdatetrain" class="tab red" method="post">
+	<form action="adminupdatetrain" class="tab red" method="get">
 		<br /> TrainNumber: <input type="text" name="trainnumber"><br />
 		<br /> <input type="submit" value=" SEARCH TRAIN "><br />
 	</form>

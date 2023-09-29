@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>E-Trains</title>
 <link rel="stylesheet" href="UserHome_Css.css">
+<script src="CsrfCookieFunctions.js" ></script>
 </head>
 <body>
 	<header>
@@ -55,19 +56,12 @@
 		</div>
 	</header>
 	<div class="tab green">User Login</div>
-	<form action="userlogin" class="tab brown" method="post">
+	<form action="userlogin" class="tab brown" method="get">
 		<br /> UserName: <input type="text" name="uname"
 			placeholder="Enter Your EmailId"> <br /> <br /> Password: <input
 			type="password" name="pword"> <br /> <br /> <input
 			type="submit" value=" LOGIN "><br />
 
 	</form>
-	<br />
-	<footer>
-		<address id="cent">
-			Contact: Mr. Shashi Raj<br />Email:<a href="mailto">Shashi@alumni.com</a><br />PhoneNo:
-			9547462319
-		</address>
-	</footer>
 </body>
 </html>

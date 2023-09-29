@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.constant.UserRole;
 import com.shashi.utility.TrainUtil;
 
@@ -31,9 +33,9 @@ public class BookTrainByRef extends HttpServlet {
 		rd.include(req, res);
 		pw.println("<div class='main'><p1 class='menu'>Your Ticket Booking Information</p1></div>");
 
-		pw.println("<div class='tab'>" + "<form action='payment' method='post'>" + "<table>"
-				+ "<tr><td>USER ID:</td><td>" + emailId + "</td>" + "<td>Train NO:</td><td>" + trainNo + "</td></tr>"
-				+ "<tr><td>From Station:</td><td>" + fromStn + "</td>" + "<td>To Station :</td><td>" + toStn + "</tr>"
+		pw.println("<div class='tab'>" + "<form action='payment' method='post' onsubmit=\"setCsrfParam('csrf')\">" + "<table>"
+				+ "<tr><td>USER ID:</td><td>" + ESAPI.encoder().encodeForHTML(emailId) + "</td>" + "<td>Train NO:</td><td>" + trainNo + "</td></tr>"
+				+ "<tr><td>From Station:</td><td>" + ESAPI.encoder().encodeForHTML(fromStn) + "</td>" + "<td>To Station :</td><td>" + ESAPI.encoder().encodeForHTML(toStn) + "</tr>"
 				+ "<tr><td>Journey Date:</td><td>" + "<input type='hidden' name='trainnumber' value='" + trainNo + "'>"
 				+ "<input type='date' name='journeydate' value='" + LocalDate.now() + "'></td>"
 				+ "<td>No of Seats:</td><td><input type='number' name='seats' value='" + seat + "'></td></tr>"

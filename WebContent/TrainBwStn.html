@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>E-Trains</title>
 <link rel="stylesheet" href="UserHome_Css.css">
+<script src="CsrfCookieFunctions.js" ></script>
 </head>
 <body>
 	<header>
@@ -57,7 +58,7 @@
 	<div class="tab">
 		<p class="menu">Trains Between Stations</p>
 	</div>
-	<form action="trainbwstn" class="tab red" method="post">
+	<form action="trainbwstn" class="tab red" method="get">
 		From Station: <input type="text" name="fromstation"><br />
 		<br /> To Station: <input type="text" name="tostation"><br />
 		<br /> <input type="submit" value=" SEARCH TRAIN "><br />

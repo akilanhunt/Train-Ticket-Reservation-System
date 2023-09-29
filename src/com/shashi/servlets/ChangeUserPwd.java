@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.beans.TrainException;
 import com.shashi.beans.UserBean;
 import com.shashi.constant.UserRole;
@@ -45,7 +47,7 @@ public class ChangeUserPwd extends HttpServlet {
 					} else {
 						RequestDispatcher rd = req.getRequestDispatcher("UserHome.html");
 						rd.include(req, res);
-						pw.println("<div class='tab'>" + "		<p1 class='menu'>" + "	Hello " + currentUser.getFName()
+						pw.println("<div class='tab'>" + "		<p1 class='menu'>" + "	Hello " + ESAPI.encoder().encodeForHTML(currentUser.getFName())
 								+ " ! Welcome to our new NITRTC Website" + "		</p1>" + "	</div>");
 						pw.println("<div class='main'><p1 class='menu'><a href='viewuserprofile'>View Profile</a></p1>&nbsp;"
 								+ "<p1 class='menu'><a href='edituserprofile'>Edit Profile</a></p1>&nbsp;"

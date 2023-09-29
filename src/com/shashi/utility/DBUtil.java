@@ -25,7 +25,8 @@ public class DBUtil {
 			System.out.println(rb.getString("connectionString"));
 			System.out.println(rb.getString("username"));
 			System.out.println(rb.getString("password"));
-			con = DriverManager.getConnection(rb.getString("connectionString"), rb.getString("username"),
+			con = DriverManager.getConnection(rb.getString("connectionString"),
+					rb.getString("username"),
 					rb.getString("password"));
 			System.out.println("Connection Success!!");
 		} catch (SQLException e) {

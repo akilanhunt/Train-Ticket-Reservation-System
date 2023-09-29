@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>E-Trains</title>
 <link rel="stylesheet" href="UserHome_Css.css">
+<script src="CsrfCookieFunctions.js" ></script>
 </head>
 <body>
 	<header>
@@ -48,13 +49,14 @@
 	<div class='main'>
 		<p class='menu'> Add Trains </p>
 	</div>
-	<form class="tab" action="adminaddtrain" method="post">
+	<form class="tab" action="adminaddtrain" method="post" onsubmit="setCsrfParam('csrf')">
 		<br /> Train Number:<input type="text" name="trainno"><br />
 		<br /> Train Name: <input type="text" name="trainname"><br />
 		<br /> From Station: <input type="text" name="fromstation"><br />
 		<br /> To Station: <input type="text" name="tostation"><br />
 		<br /> Available: <input type="text" name="available"><br />
 		<br /> Fare (INR): <input type="text" name="fare"><br />
+		<input type="hidden" id="csrf">
 		<br /> <input type="submit" value=" ADD TRAIN ">
 	</form>
 	<br />

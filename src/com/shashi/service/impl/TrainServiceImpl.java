@@ -28,8 +28,8 @@ public class TrainServiceImpl implements TrainService {
 			ps.setString(4, train.getTo_stn());
 			ps.setLong(5, train.getSeats());
 			ps.setDouble(6, train.getFare());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			int rs = ps.executeUpdate();
+			if (rs>0) {
 				responseCode = ResponseCode.SUCCESS.toString();
 			}
 			ps.close();
@@ -71,8 +71,8 @@ public class TrainServiceImpl implements TrainService {
 			ps.setLong(4, train.getSeats());
 			ps.setDouble(5, train.getFare());
 			ps.setDouble(6, train.getTr_no());
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			int rs = ps.executeUpdate();
+			if (rs>0) {
 				responseCode = ResponseCode.SUCCESS.toString();
 			}
 			ps.close();

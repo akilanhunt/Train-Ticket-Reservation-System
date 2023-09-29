@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.owasp.esapi.ESAPI;
+
 import com.shashi.beans.TrainBean;
 import com.shashi.beans.TrainException;
 import com.shashi.constant.UserRole;
@@ -40,8 +42,8 @@ public class AdminViewTrainFwd extends HttpServlet {
 				for (TrainBean train : trains) {
 
 					pw.println("" + "<tr> " + "" + "<td><a href='viewadmin?trainNo=" + train.getTr_no() + "&fromStn="
-							+ train.getFrom_stn() + "&toStn=" + train.getTo_stn() + "'>" + train.getTr_name()
-							+ "</a></td>" + "<td>" + train.getTr_no() + "</td>" + "<td>" + train.getFrom_stn() + "</td>"
+							+ ESAPI.encoder().encodeForHTML(train.getFrom_stn()) + "&toStn=" + ESAPI.encoder().encodeForHTML(train.getTo_stn()) + "'>" + ESAPI.encoder().encodeForHTML(train.getTr_name())
+							+ "</a></td>" + "<td>" + train.getTr_no() + "</td>" + "<td>" + ESAPI.encoder().encodeForHTML(train.getFrom_stn()) + "</td>"
 							+ "<td>" + train.getTo_stn() + "</td>" + "<td>" + train.getSeats() + "</td>" + "<td>"
 							+ train.getFare() + " RS</td>" + "<td><a href='adminupdatetrain?trainnumber="
 							+ train.getTr_no() + "'>Update</a></td>" + "</tr>");
