@@ -33,7 +33,6 @@ public class AdminLogin extends HttpServlet {
 		res.setContentType("text/html");
 		String uName = req.getParameter("uname");
 		String pWord = req.getParameter("pword");
-		Encoder encoder = ESAPI.encoder();
 		try {
 			String message = TrainUtil.login(req, res, UserRole.ADMIN, uName, pWord);
 			if ("SUCCESS".equalsIgnoreCase(message)) {
